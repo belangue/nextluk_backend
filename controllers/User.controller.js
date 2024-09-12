@@ -9,11 +9,10 @@ exports.getAll = async (req, res) => {
         });
     } catch (error) {
         res.status(401).send({
-            message: `Some thing went wrong check you internet connection`
+            message: `Something went wrong check you internet connection`
         });
     }
 };
-
 exports.register = async (req, res) => {
     try {
         let {
@@ -47,17 +46,17 @@ exports.register = async (req, res) => {
             username: name,
             email: email,
             password: hash,
-            userType: userType
+            userType: "client"
         })
         user.save()
         console.log("here");
         res.status(200).json({
-            "message": "User Created Succesfully", "user": user
+            "message": "User Created Succesfully"
         });
     } catch (error) {
         console.log(error);
         res.status(501).send({
-            message: `Some thing went wrong check you internet connection`
+            message: `Something went wrong check you internet connection`
         });
     }
 };
@@ -110,5 +109,16 @@ exports.delete = async (req, res) => {
     catch (e) {
         console.log(e)
         return res.status(501).json({ error: 'server error' })
+    }
+};
+exports.getByID = async (req, res) => {
+    try {
+        res.status(200).json({
+            "users": await UserModel.getByID(req.params.id)
+        });
+    } catch (error) {
+        res.status(401).send({
+            message: `Something went wrong check you internet connection`
+        });
     }
 };

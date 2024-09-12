@@ -74,6 +74,24 @@ HairstyleModel.getByID = async (id) => {
         throw ("Can not save hairstyle error", err)
     }
 }
+HairstyleModel.getHairstyleAndSalon = async (id) => {
+    try {
+        return new Promise((resolve, reject) => {
+            connection.query(`SELECT * FROM hairstyle innerjoin salon in where hairstyleId = '${id}'`, async (err, resp) => {
+                if (err) {
+                    reject("can not get data", err);
+                }
+                if (resp.length) {
+                    resolve(new HairstyleModel(resp[0]));
+                } else {
+                    resolve(null);
+                }
+            });
+        });
+    } catch (error) {
+        throw ("Can not save hairstyle error", err)
+    }
+}
 HairstyleModel.prototype.delete = async function () {
     console.log(this);
     try {
