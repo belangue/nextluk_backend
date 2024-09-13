@@ -1,13 +1,39 @@
 const HairstyleModel = require("../models/Hairstyle");
 
 
-exports.getAll = (req, res) => {
+exports.getAll =async (req, res) => {
     try {
         res.status(200).send({
-            hairstyle: HairstyleModel.getAll()
+            hairstyle:await HairstyleModel.getAll()
         });
     } catch (error) {
         res.status(401).send({
+            message: `Something went wrong check you internet connection`
+        });
+    }
+};
+exports.createHairstyle = async (req, res) => {
+    try {
+        let {
+            hairstyleId,
+            name,
+            description,
+            previewImage,
+        } = req.body
+        const hairstyle = new HairstyleModel({
+            hairstyleId: hairstyleId,
+            name: name,
+            description: description,
+            previewImage: previewImage
+        })
+        hairstyle.save()
+        console.log("here");
+        res.status(200).json({
+            "message": "hairstyle Created Succesfully"
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(501).send({
             message: `Something went wrong check you internet connection`
         });
     }
@@ -34,17 +60,6 @@ exports.getByID = async (req, res) => {
     try {
         res.status(200).json({
             "hairstyle": await HairstyleModel.getByID()
-        });
-    } catch (error) {
-        res.status(401).send({
-            message: `Something went wrong check you internet connection`
-        });
-    }
-};
-exports.save = async (res, req) => {
-    try {
-        res.status(200).json({
-            "hairstyle": await HairstyleModel.save()
         });
     } catch (error) {
         res.status(401).send({

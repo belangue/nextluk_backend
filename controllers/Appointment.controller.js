@@ -16,17 +16,23 @@ exports.createAppointment = async (req, res) => {
     try {
         let {
             date,
-            phone,
+            isPaid,
+            hairdresserId,
+            salonId,
+            userId,
         } = req.body
-        let id = 1
+        let id = 2
         const appointment = new AppointmentModel({
-            phone: phone,
-            date: appointment
+            date: date,
+            isPaid: isPaid,
+            hairdresserId: hairdresserId,
+            salonId: salonId,
+            userId: userId
         })
         appointment.save()
         console.log("here");
         res.status(200).json({
-            "message": "User Created Succesfully"
+            "message": "Appointment Created Succesfully"
         });
     } catch (error) {
         console.log(error);

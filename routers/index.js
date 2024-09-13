@@ -6,16 +6,16 @@ const routers = express.Router();
 const userRoutes = require('./User.router')
 routers.use("/user",userRoutes)
 
-// const salonRoutes = require('./Salon.router')
-// routers.use("/salon",salonRoutes)
+const salonRoutes = require('./Salon.router')
+routers.use("/salon",salonRoutes)
 
-// const hairstyleRoutes = require('./Hairstyle.router')
-// routers.use("/hairstyle",hairstyleRoutes)
+const hairstyleRoutes = require('./Hairstyle.router')
+routers.use("/hairstyle",hairstyleRoutes)
 
-// const paymentRoutes = require('./Payment.router')
-// routers.use("/Payment",paymentRoutes)
+const paymentRoutes = require('./Payment.router')
+routers.use("/Payment",paymentRoutes)
 
-// const appointmentRoutes = require('./Appointment.router')
-// routers.use("/Appointment",appointmentRoutes)
+const appointmentRoutes = require('./Appointment.router')
+routers.use("/appointment",appointmentRoutes)
 
 module.exports = routers

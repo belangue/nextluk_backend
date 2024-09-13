@@ -2,10 +2,11 @@ const connection = require('../config/dbConfig')
 
 const SalonModel = function (model, options) {
     this.SalonId = model.SalonId
-    this.name = model.Name
-    this.location = model.Location
-    this.email = model.Email
-    this.listHairdressers = model.listHairdressers
+    this.name = model.name
+    this.address = model.address
+    this.phoneNumber = model.phoneNumber
+    this.longitude = model.longitude
+    this.latitude = model.latitude
 }
 
 SalonModel.getAll = async () => {
@@ -58,14 +59,16 @@ SalonModel.prototype.save = async function () {
 SalonModel.getByID = async (id) => {
     try {
         return new Promise((resolve, reject) => {
-            connection.query(`SELECT * FROM salon where salonId = '${id}'`, async (err, resp) => {
+            connection.query(`SELECT *  from salon where salonId ='${id}'`, async (err, resp) => {
                 if (err) {
                     reject("can not get data", err);
                 }
+                // console.log(resp);
+                
                 if (resp.length) {
                     // console.log("Users objects:", resp[0]);
                     // console.log("Users objects:", new UserModel(resp[0]));
-                    resolve(new SalonModel(resp[0]));
+                    resolve(new SalonModel(resp[0]).toJson());
                 } else {
                     resolve(null);
                 }
@@ -93,7 +96,10 @@ SalonModel.prototype.toJson = function () {
         return {
             salonId: this.salonId,
             name: this.name,
-            Location: this.location,
+            address: this.address,
+            phoneNumber: this.phoneNumber,
+            longitude: this.longitude,
+            latitude: this.latitude,
         };
     } catch (error) {
         throw ("Can not save salon error", err)

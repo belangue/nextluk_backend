@@ -1,12 +1,12 @@
 const connection = require('../config/dbConfig')
 
 const AppointmentModel = function (model) {
-    this.appointment_id = model.appointment_id
+    this.appointmentId = model.appointmentId
     this.date = model.date
     this.isPaid = model.isPaid
-    this.user_id = model.user_id
-    this.hairdresser_id = model.hairdresser_id
-    this.salon_id = model.salon_id
+    this.userId = model.userId
+    this.hairdresserId = model.hairdresserId
+    this.salonId = model.salonId
 }
 
 AppointmentModel.getAll = async () => {
@@ -33,8 +33,8 @@ AppointmentModel.getAll = async () => {
 };
 AppointmentModel.prototype.save = async function () {
     try {
-        if (this.appointment_id) {
-            await connection.query("UPDATE users SET ? WHERE appointmemtId = ?", [this, this.appointment_id], (err, res) => {
+        if (this.appointmentId) {
+            await connection.query("UPDATE users SET ? WHERE appointmemtId = ?", [this, this.appointmentId], (err, res) => {
                 if (err) {
                     throw ("Can not save appointment error", err)
                 }
@@ -46,8 +46,8 @@ AppointmentModel.prototype.save = async function () {
                 if (err) {
                     throw ("Can not save appointment error", err)
                 }
-                this.appointment_id = res.insertId;
-                console.log(this.appointment_id);
+                this.appointmentId = res.insertId;
+                console.log(this.appointmentId);
             });
         }
     } catch (error) {

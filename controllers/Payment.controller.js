@@ -1,7 +1,7 @@
 const PaymentModel = require("../models/Payment");
 
 
-exports.getAll = (req, res) => {
+exports.getAll = async(req, res) => {
     try {
         res.status(200).send({
             payment: PaymentModel.getAll()
@@ -34,17 +34,6 @@ exports.getByID = async (req, res) => {
     try {
         res.status(200).json({
             "payment": await PaymentModel.getByID()
-        });
-    } catch (error) {
-        res.status(401).send({
-            message: `Something went wrong check you internet connection`
-        });
-    }
-};
-exports.save = async (res, req) => {
-    try {
-        res.status(200).json({
-            "payment": await PaymentModel.save()
         });
     } catch (error) {
         res.status(401).send({

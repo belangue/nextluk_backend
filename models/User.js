@@ -81,7 +81,7 @@ UserModel.getByID = async (id) => {
 UserModel.prototype.delete = async function () {
     console.log(this);
     try {
-        connection.query(`DELETE FROM users WHERE userId = ${this.Id}`, (err, res) => {
+        connection.query(`DELETE FROM users WHERE userId = ${this.userId}`, (err, res) => {
             if (err) {
                 throw ("can not delete data", err)
             }

@@ -42,6 +42,8 @@ exports.register = async (req, res) => {
             return res.status(401).json({ error: 'Email Already Used' });
         if (unameExist)
             return res.status(401).json({ error: 'User name Already Used' });
+        console.log(hash);
+        
         const user = new UserModel({
             username: name,
             email: email,

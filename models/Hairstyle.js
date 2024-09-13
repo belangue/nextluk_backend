@@ -1,13 +1,13 @@
 const connection = require('../config/dbConfig')
 
 const HairstyleModel = function (model) {
-    this.hairstyle_id = model.hairstyle_id
+    this.hairstyleId = model.hairstyleId
     this.name = model.name
     this.description = model.description
     this.image = model.image
 }
 
-PaymentModel.getAll = async () => {
+HairstyleModel.getAll = async () => {
     try {
         return new Promise((resolve, reject) => {
             connection.query(`SELECT * FROM hairstyle`, async (err, resp) => {
@@ -33,7 +33,7 @@ PaymentModel.getAll = async () => {
 HairstyleModel.prototype.save = async function () {
     try {
         if (this.hairstyleId) {
-            await connection.query("UPDATE hairstyle SET ? WHERE salonId = ?", [this, this.hairstyleId], (err, res) => {
+            await connection.query("UPDATE hairstyle SET ? WHERE salonId = ?", [this, this.hairstyle_id], (err, res) => {
                 if (err) {
                     throw ("Can not save hairstyle error", err)
                 }
