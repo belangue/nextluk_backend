@@ -4,7 +4,7 @@ const HairstyleModel = function (model) {
     this.hairstyleId = model.hairstyleId
     this.name = model.name
     this.description = model.description
-    this.image = model.image
+    this.previewImage = model.previewImage
 }
 
 HairstyleModel.getAll = async () => {
@@ -33,7 +33,7 @@ HairstyleModel.getAll = async () => {
 HairstyleModel.prototype.save = async function () {
     try {
         if (this.hairstyleId) {
-            await connection.query("UPDATE hairstyle SET ? WHERE salonId = ?", [this, this.hairstyle_id], (err, res) => {
+            await connection.query("UPDATE hairstyle SET ? WHERE salonId = ?", [this, this.hairstyleId], (err, res) => {
                 if (err) {
                     throw ("Can not save hairstyle error", err)
                 }

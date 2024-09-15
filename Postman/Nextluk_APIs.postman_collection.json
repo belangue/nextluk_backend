@@ -1,0 +1,480 @@
+{
+	"info": {
+		"_postman_id": "1b760b74-7273-4365-8e80-d6d3ef1c0f15",
+		"name": "Nextluk_APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38293608"
+	},
+	"item": [
+		{
+			"name": "UserModel",
+			"item": [
+				{
+					"name": "getAllUser",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/user/getAllUsers",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"getAllUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/user/delete/1",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/user/getByID",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"getByID"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eeruhtrmt@gmail.cm\",\r\n    \"password\": \"Err12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bk_url}}/api/user/login",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \" sguh\",\r\n    \"email\": \"eerutrmt@gmail.cm\",\r\n    \"password\" : \"Err12345\",\r\n    \"confirmPassword\": \"Err12345\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bk_url}}/api/user/register",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "AppointmentModel",
+			"item": [
+				{
+					"name": "getAllAppointment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/appoinment/getAllAppoinmtent",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"appoinment",
+								"getAllAppoinmtent"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/appoinment/getById/1",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"appoinment",
+								"getById",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/appointment/delete/3",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"appointment",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/appointment/delete/3",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"appointment",
+								"delete",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createAppointment",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\": \"huiuh\",\r\n            \"isPaid\": \"\",\r\n            \"hairdresserId\": \"sfwefw\",\r\n            \"salonId\": \"1\",\r\n            \"userId\": \"wefew\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bk_url}}/api/appointment/createAppointment",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"appointment",
+								"createAppointment"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PaymentModel",
+			"item": [
+				{
+					"name": "getAllPayment",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "HairstyleModel",
+			"item": [
+				{
+					"name": "getAllHairstyles",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/hairstyle/getAllHairstyle",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"hairstyle",
+								"getAllHairstyle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/hairstyle/getByID/1",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"hairstyle",
+								"getByID",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createHairstyle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hairstyle_id\": \"3\",\r\n     \"name\": \"ewfgtji5gg\",\r\n      \"description\": \"jsdfsh\",\r\n        \"previewImage\": \"eerf\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bk_url}}/api/hairstyle/createHairstyle",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"hairstyle",
+								"createHairstyle"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "salonModel",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/salon/getAllSalon",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"salon",
+								"getAllSalon"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/salon/delete/1",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"salon",
+								"delete",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"sdfaas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bk_url}}/api/salon/update",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"salon",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{bk_url}}/api/salon/getByID/2",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"salon",
+								"getByID",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createSalon",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"salonId\":\"3\",\r\n    \"name\":\"whioh\",\r\n    \"address\":\"siooifjweio\",\r\n    \"phoneNumber\": \"2990309523\",\r\n    \"longitude\":\"3.05\",\r\n    \"latitude\":\"4.10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{bk_url}}/api/salon/createSalon",
+							"host": [
+								"{{bk_url}}"
+							],
+							"path": [
+								"api",
+								"salon",
+								"createSalon"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": "null",
+			"type": "string"
+		},
+		{
+			"key": "bk_url",
+			"value": "localhost:5000",
+			"type": "string"
+		}
+	]
+}

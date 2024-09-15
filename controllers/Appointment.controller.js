@@ -17,7 +17,6 @@ exports.createAppointment = async (req, res) => {
         let {
             date,
             isPaid,
-            hairdresserId,
             salonId,
             userId,
         } = req.body
@@ -25,7 +24,6 @@ exports.createAppointment = async (req, res) => {
         const appointment = new AppointmentModel({
             date: date,
             isPaid: isPaid,
-            hairdresserId: hairdresserId,
             salonId: salonId,
             userId: userId
         })
@@ -43,30 +41,57 @@ exports.createAppointment = async (req, res) => {
 };
 exports.delete = async (req, res) => {
     try {
-        console.log(req.body);
-        const [appoinment] = await Promise.all([
-            AppointmentModel.getByID(req.params.id),
-        ]);
-        if (!appointment)
-            return res.status(401).json({ error: 'Appointment do not exist.' });
+        console.log('Delete request body:', req.body);
+        console.log('Delete request params:', req.params);
 
-        // console.log(user);
-        appoinment.delete()
-        res.status(201).send({ message: `appointment deleted successfully!` });
-    }
-    catch (e) {
-        console.log(e)
-        return res.status(501).json({ error: 'server error' })
+        const appointmentId = req.params.id;
+        const appointment = await AppointmentModel.getByID(appointmentId);
+
+        if (!appointment) {
+            return res.status(404).json({ error: 'Appointment does not exist.' });
+        }
+
+        await AppointmentModel.delete(appointmentId);
+
+        res.status(200).json({ message: 'Appointment deleted successfully!' });
+    } catch (e) {
+        console.error('Error during appointment deletion:', e);
+        return res.status(500).json({ error: 'Server error', details: e.message });
     }
 };
+
 exports.getByID = async (req, res) => {
     try {
+        console.log(req.params.id);
+        let appoinment =  await AppointmentModel.getByID(req.params.id)
+        console.log(appoinment);
+        
         res.status(200).json({
-            "appointment": await AppointmentModel.getByID()
+            "appointment":appoinment
         });
     } catch (error) {
         res.status(401).send({
             message: `Something went wrong check you internet connection`
         });
+    }
+};
+exports.update = async (req, res) => {
+    try {
+        let { date} =req.body;
+        console.log(req.body);
+        const [appointment] = await Promise.all([
+            AppointmentModel.getByID(req.params.id),
+        ]);
+        if (!appointment)
+            return res.status(401).json({ error: 'Account do not exist.' });
+
+        // console.log(user);
+        appointment.date = date || appointment.date
+        appointment.save()
+        res.status(201).send({ message: `appointment updated successfully!` });
+    }
+    catch (e) {
+        console.log(e)
+        return res.status(501).json({ error: 'server error' })
     }
 };

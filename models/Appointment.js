@@ -5,7 +5,6 @@ const AppointmentModel = function (model) {
     this.date = model.date
     this.isPaid = model.isPaid
     this.userId = model.userId
-    this.hairdresserId = model.hairdresserId
     this.salonId = model.salonId
 }
 
@@ -55,22 +54,47 @@ AppointmentModel.prototype.save = async function () {
     }
 
 };
-AppointmentModel.getByID = (id) => {
-    connection.query(`SELECT * FROM appointment where appointment_id = '${id}'`, (err, resp) => {
-        if (err) {
-            throw ("can not get data", err)
-        }
-        if (resp.length) {
-            // console.log("Users objects:", resp[0]);
-            return new AppointmentModel(resp[0])
-        }
-        return null
-    })
+
+AppointmentModel.getByID = async (id) => {
+    try {
+        return new Promise((resolve, reject) => {
+            connection.query(`SELECT *  from appointment where appointmentId ='${id}'`, async (err, resp) => {
+                if (err) {
+                    reject("can not get data", err);
+                }
+                // console.log(resp);
+                
+                if (resp.length) {
+                    // console.log("Users objects:", resp[0]);
+                    // console.log("Users objects:", new UserModel(resp[0]));
+                    resolve(new AppointmentModel(resp[0]).toJson());
+                } else {
+                    resolve(null);
+                }
+            });
+        });
+    } catch (error) {
+        throw ("Can not save appointment error", err)
+    }
 }
+
+// AppointmentModel.prototype.delete = async function (id) {
+
+//     console.log(this);
+//     try {
+//         connection.query(`DELETE FROM appointment WHERE appointmentId = ${this.Id}`, (err, res) => {
+//             if (err) {
+//                 throw ("can not delete data", err)
+//             }
+//         });
+//     } catch (error) {
+//         throw ("can not delete data", err)
+//     }
+// };
 AppointmentModel.prototype.delete = async function () {
     console.log(this);
     try {
-        connection.query(`DELETE FROM appointment WHERE appointment_id = ${this.Id}`, (err, res) => {
+        connection.query(`DELETE FROM appointment WHERE appointmentId = ${this.appointmentId}`, (err, res) => {
             if (err) {
                 throw ("can not delete data", err)
             }
@@ -79,6 +103,7 @@ AppointmentModel.prototype.delete = async function () {
         throw ("can not delete data", err)
     }
 };
+
 
 // method to send data to the front end
 AppointmentModel.prototype.toJson = function () {
@@ -89,7 +114,6 @@ AppointmentModel.prototype.toJson = function () {
             "isPaid": this.isPaid,
             "userId": this.user_id,
             "salonId": this.salon_id,
-            "hairdresserId": this.hairdresser_id,
         };
     } catch (error) {
         throw ("Can not save appoinment error", err)

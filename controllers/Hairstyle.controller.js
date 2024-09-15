@@ -25,7 +25,7 @@ exports.createHairstyle = async (req, res) => {
             name: name,
             description: description,
             previewImage: previewImage
-        })
+        });
         hairstyle.save()
         console.log("here");
         res.status(200).json({
@@ -59,7 +59,7 @@ exports.delete = async (req, res) => {
 exports.getByID = async (req, res) => {
     try {
         res.status(200).json({
-            "hairstyle": await HairstyleModel.getByID()
+            "hairstyle": await HairstyleModel.getByID(req.params.id)
         });
     } catch (error) {
         res.status(401).send({
