@@ -5,6 +5,10 @@ const SalonModel = function (model, options) {
     this.name = model.name
     this.address = model.address
     this.phoneNumber = model.phoneNumber
+    this.manager = model.manager
+    this.createdBy = model.createdBy
+    this.createdDate = model.createdDate
+    this.town = model.town
     this.longitude = model.longitude
     this.latitude = model.latitude
 }
@@ -68,6 +72,26 @@ SalonModel.getByID = async (id) => {
                 if (resp.length) {
                     // console.log("Users objects:", resp[0]);
                     // console.log("Users objects:", new UserModel(resp[0]));
+                    resolve(new SalonModel(resp[0]).toJson());
+                } else {
+                    resolve(null);
+                }
+            });
+        });
+    } catch (error) {
+        throw ("Can not save salon error", err)
+    }
+}
+SalonModel.getAllByManager = async (id) => {
+    try {
+        return new Promise((resolve, reject) => {
+            connection.query(`SELECT *  from salon where manager ='${id}'`, async (err, resp) => {
+                if (err) {
+                    reject("can not get data", err);
+                }
+                // console.log(resp);
+                
+                if (resp.length) {
                     resolve(new SalonModel(resp[0]).toJson());
                 } else {
                     resolve(null);

@@ -67,8 +67,6 @@ UserModel.getByID = async (id) => {
                     reject("can not get data", err);
                 }
                 if (resp.length) {
-                    // console.log("Users objects:", resp[0]);
-                    // console.log("Users objects:", new UserModel(resp[0]));
                     resolve(new UserModel(resp[0]));
                 } else {
                     resolve(null);

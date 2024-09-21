@@ -77,7 +77,27 @@ AppointmentModel.getByID = async (id) => {
         throw ("Can not save appointment error", err)
     }
 }
-
+AppointmentModel.getBySalon = async (id) => {
+    try {
+        return new Promise((resolve, reject) => {
+            connection.query(`SELECT *  from appointment where salonId ='${id}'`, async (err, resp) => {
+                if (err) {
+                    reject("can not get data", err);
+                }
+                // console.log(resp);
+                
+                if (resp.length) {
+                    const appointmentList = resp.map(row => new AppointmentModel(row).toJson());
+                    resolve(appointmentList);
+                } else {
+                    resolve(null);
+                }
+            });
+        });
+    } catch (error) {
+        throw ("Can not save appointment error", err)
+    }
+}
 // AppointmentModel.prototype.delete = async function (id) {
 
 //     console.log(this);

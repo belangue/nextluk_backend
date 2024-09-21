@@ -4,7 +4,8 @@ const HairstyleModel = function (model) {
     this.hairstyleId = model.hairstyleId
     this.name = model.name
     this.description = model.description
-    this.previewImage = model.previewImage
+    this.price = model.price
+    this.salonId = model.salonId
 }
 
 HairstyleModel.getAll = async () => {
@@ -62,8 +63,24 @@ HairstyleModel.getByID = async (id) => {
                     reject("can not get data", err);
                 }
                 if (resp.length) {
-                    // console.log("Users objects:", resp[0]);
-                    // console.log("Users objects:", new UserModel(resp[0]));
+                    resolve(new HairstyleModel(resp[0]));
+                } else {
+                    resolve(null);
+                }
+            });
+        });
+    } catch (error) {
+        throw ("Can not save hairstyle error", err)
+    }
+}
+HairstyleModel.getBySalon = async (id) => {
+    try {
+        return new Promise((resolve, reject) => {
+            connection.query(`SELECT * FROM hairstyle where salonId = '${id}'`, async (err, resp) => {
+                if (err) {
+                    reject("can not get data", err);
+                }
+                if (resp.length) {
                     resolve(new HairstyleModel(resp[0]));
                 } else {
                     resolve(null);

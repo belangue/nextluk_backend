@@ -95,3 +95,34 @@ exports.update = async (req, res) => {
         return res.status(501).json({ error: 'server error' })
     }
 };
+exports.getBySalon = async (req, res) => {
+    try {
+        res.status(200).json({
+            "hairstyle": await AppointmentModel.getBySalon(req.params.id)
+        });
+    } catch (error) {
+        res.status(401).send({
+            message: `Something went wrong check you internet connection`
+        });
+    }
+};
+exports.changeStatus = async (req, res) => {
+    try {
+        const appoinmentId = req.params.appoinmentId;
+        const status = req.body.status; // Assuming status is "blocked" or "unblocked"
+
+        const [appoinment] = await Promise.all([
+            AppointmentModel.getByID(appoinmentId),
+        ]);
+        if (!appoinment) {
+            return res.status(404).json({ error: 'Appointment not found' });
+        }
+
+        appoinment.status = status;
+        await appoinment.save();
+
+        res.status(200).json({ message: 'Appointment status updated successfully' });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to update salon status', message: error.message });
+    }
+};
