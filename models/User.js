@@ -8,6 +8,7 @@ const UserModel = function (model) {
     this.password = model.password
     this.userType = model.userType
     this.token = model.token
+    this.status = model.status  
 
     // this.password_confirmation = model.password_confirmation  // password confirmation is niot store
 }
@@ -136,6 +137,8 @@ UserModel.prototype.toJson = function () {
             userId: this.userId,
             username: this.username,
             email: this.email,
+            userType:this.userType,
+            status: this.status
         };
     } catch (error) {
         throw ("Can not save user error", err)
